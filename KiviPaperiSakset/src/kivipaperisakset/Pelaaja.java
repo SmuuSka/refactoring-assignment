@@ -6,9 +6,10 @@ package kivipaperisakset;
  * @author Ira Dook
  */
 public class Pelaaja {
-
-    int voitot;      // Voittojen lukumäärä
-    int voitotYhteensä;
+    /*
+    Poistettu ylimääräinen instanssimuuttuja
+     */
+    private int voitotYhteensä;
 
     /**
      * Valitse randomilla kivi, paperi tai sakset
@@ -18,24 +19,23 @@ public class Pelaaja {
         int c = (int) (Math.random() * 3);
         switch (c) {
             case 0:
-                valinta = ("kivi");
+                valinta = "kivi";
                 break;
             case 1:
-                valinta = ("paperi");
+                valinta = "paperi";
                 break;
             case 2:
-                valinta = ("sakset");
+                valinta = "sakset";
                 break;
         }
         return valinta;
     }
 
     public int setVoitot() {
-        int voitotYhteensä = voitot++;
-        return voitotYhteensä;
+        return ++voitotYhteensä;
     }
 
     public int getVoitot() {
-        return (voitot);
+        return (voitotYhteensä);
     }
 }

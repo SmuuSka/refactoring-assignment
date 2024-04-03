@@ -5,30 +5,26 @@ package kivipaperisakset;
  * @author Ira Dook
  */
 public class Peli {
-    /**
-     * Instassimuuttujat
-     * Poistettu voitot
-     * Lisätty Pelaajille instanssimuuttujat
-     * Vaihdettu näkyvyystaso private
-     */
-    private int pelatutPelit = 0;           // Pelattujen pelien lkm
-    private int tasapelit = 0;              // Tasapelien lkm
+
+     // Instassimuuttujat
+     // Poistettu voitot
+     // Lisätty Pelaajille instanssimuuttujat
+     // Vaihdettu näkyvyystaso private
+
+    private int pelatutPelit = 0; // Pelattujen pelien lkm
+    private int tasapelit = 0; // Tasapelien lkm
     private Pelaaja pelaaja1, pelaaja2;
-    /**
-     * Lisätty konstruktori
-     */
+
+     // Lisätty konstruktori
+
     public Peli(Pelaaja p1, Pelaaja p2){
         pelaaja1 = p1;
         pelaaja2 = p2;
     }
 
-    private void pelaa() {
-
-        /*
-        Korvattu turha ehtolause
-         */
-        boolean peliLoppui = false;
-
+    public void pelaa() {
+        // Korvattu voiton tarkistuksen ehtolause
+        // Poistettu ylimääräinen peliLoppui muuttuja
         String p1Valinta;
         String p2Valinta;
        
@@ -43,41 +39,40 @@ public class Peli {
             p2Valinta = pelaaja2.pelaajanValinta();
             System.out.println("Pelaaja 2: " + p2Valinta
                     + "\n\t Pelaaja 2:lla koossa " + pelaaja2.getVoitot() + " voittoa.");
-            
-            // Allaolevassa pätkässä on yritetty eri tapoja saada
-            // lukumäärän laskeminen toimimaan oikein.
-            // Ei tää kyllä vieläkään skulaa - KORJAA!
-            
-            if ((p1Valinta.equals("kivi")) && (p2Valinta.equals("paperi"))) {
-                System.out.println("Pelaaja 2 voittaa");
-                pelaaja2.setVoitot();  // Kokeile eri tapoja saada lukumäärän laskenta kuntoon
-            } else if ((p1Valinta.equals("paperi")) && (p2Valinta.equals("kivi"))) {
-                pelaaja1.setVoitot();
-                System.out.println("Pelaaja 1 voittaa");
-            } else if ((p1Valinta.equals("kivi")) && (p2Valinta.equals("sakset"))) {
-                pelaaja1.voitot = pelaaja1.setVoitot();
-                System.out.println("Pelaaja 1 voittaa");
-            } else if ((p1Valinta.equals("sakset")) && (p2Valinta.equals("kivi"))) {
-                pelaaja2.voitot = pelaaja2.setVoitot();
-                System.out.println("Pelaaja 2 voittaa");
-            } else if ((p1Valinta.equals("sakset")) && (p2Valinta.equals("paperi"))) {
-                pelaaja1.voitot = pelaaja1.setVoitot();
-                System.out.println("Pelaaja 1 voittaa");
-            } else if ((p1Valinta.equals("paperi")) && (p2Valinta.equals("sakset"))) {
-                pelaaja2.voitot = pelaaja2.setVoitot();
-                System.out.println("Pelaaja 2 voittaa");
-            }
-            if (p1Valinta == p2Valinta) {
-                tasapelit++;
-                System.out.println("\n\t\t\t Tasapeli \n");
-            }
-//            pelatutPelit++;
-//            if ((p1.getVoitot() >= 3) || (p2.getVoitot() >= 3)) {
-//                peliLoppui = true;
-//
-//            }
-//            System.out.println();
-        } while (pelaaja1.getVoitot() > 2 || pelaaja2.getVoitot() > 3);
+
+            kierros(p1Valinta, p2Valinta);
+
+            //Vaihdettu merkkijonojen vertailuoperaattori == equals() metodiin
+
+        } while (pelaaja1.getVoitot() < 3 && pelaaja2.getVoitot() < 3);
         System.out.println("KOLME VOITTOA - PELI PÄÄTTYY");
+    }
+
+    private void kierros(String p1, String p2){
+        pelatutPelit++;
+        switch (p1) {
+            case "kivi" -> {
+                if (p2.equals("paperi")) {
+                    pelaaja2.setVoitot();
+                    break;
+                }
+                pelaaja1.setVoitot();
+            }
+            case "paperi" -> {
+                if (p2.equals("sakset")) {
+                    pelaaja2.setVoitot();
+                    break;
+                }
+                pelaaja1.setVoitot();
+            }
+            case "sakset" -> {
+                if (p2.equals("kivi")) {
+                    pelaaja2.setVoitot();
+                    break;
+                }
+                pelaaja1.setVoitot();
+            }
+            default -> tasapelit++;
+        }
     }
 }
