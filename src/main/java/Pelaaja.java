@@ -3,8 +3,13 @@
  * @author Ira Dook
  */
 public class Pelaaja implements IPelaaja {
-    private int voitotYhteensä;
+    private int voitotYhteensa;
     private Valinnat valinta;
+
+    /**
+     * Valinnat enum sisältää kivi = 0, paperi = 1 ja sakset = 2, joista pelaaja valitsee.
+     * Valinnat enumin arvoa käytetään pelaajan valinnan arvon määrittämiseen.
+     */
     private enum Valinnat {
         Kivi(0),
         Paperi(1),
@@ -20,7 +25,7 @@ public class Pelaaja implements IPelaaja {
     }
 
     /**
-     * Metodi tuottaa pelaajan valinnan, joka arvotaan satunnaislukugeneraattorilla Valinnat-sisäluokan koon mukaan.
+     * Metodi tuottaa pelaajan valinnan, joka arvotaan satunnaislukugeneraattorilla Valinnat-sisaluokan koon mukaan.
      * Metodi palauttaa valintaa vastaavan arvon Valinnoista.
      * @return Valinnat enumin arvo
      */
@@ -33,12 +38,12 @@ public class Pelaaja implements IPelaaja {
 
     @Override
     public void setVoitot() {
-        voitotYhteensä++;
+        voitotYhteensa++;
     }
 
     @Override
     public int getVoitot() {
-        return voitotYhteensä;
+        return voitotYhteensa;
     }
 
     @Override

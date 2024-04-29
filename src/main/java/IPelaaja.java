@@ -1,5 +1,5 @@
 /**
- * IPelaaja rajapinta, joka määrittelee Pelaaja-luokan toteutettavat metodit.
+ * IPelaaja rajapinta, joka maarittelee Pelaaja-luokan toteutettavat metodit.
  */
 public interface IPelaaja {
     int pelaajanValinta();

@@ -1,5 +1,5 @@
 /**
- * IPeli-rajapinta, jossa määritelty Peli-luokalle pelaa-metodi.
+ * IPeli-rajapinta, jossa maaritelty Peli-luokalle pelaa-metodi.
  */
 public interface IPeli {
     void pelaa();

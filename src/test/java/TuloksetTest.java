@@ -30,7 +30,7 @@ class TuloksetTest {
 
         tulokset.kierroksenTulokset(mockPelaaja1, mockPelaaja2, 1, 0);
 
-        String expectedOutput = "Erä: 1 =====================\nTasapelien lukumäärä: 0";
+        String expectedOutput = "Era: 1 =====================\nTasapelien lukumaara: 0";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 

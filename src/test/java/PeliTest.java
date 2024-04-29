@@ -11,30 +11,30 @@ class PeliTest {
     void testaaPelinLuonti() {
         IPelaaja mockPelaaja1 = Mockito.mock(IPelaaja.class);
         IPelaaja mockPelaaja2 = Mockito.mock(IPelaaja.class);
-        IPisteyttäjä mockPisteyttäjä = Mockito.mock(IPisteyttäjä.class);
-        IPeli peli = new Peli(mockPelaaja1, mockPelaaja2,mockPisteyttäjä, 3);
+        IPisteyttaja mockPisteyttaja = Mockito.mock(IPisteyttaja.class);
+        IPeli peli = new Peli(mockPelaaja1, mockPelaaja2,mockPisteyttaja, 3);
         assertNotNull(peli);
     }
 
-    @ParameterizedTest(name = "Testataan virheellinen voitosta poikki-syöte")
+    @ParameterizedTest(name = "Testataan virheellinen voitosta poikki-syote")
     @ValueSource(ints = {0, -1})
-    void testaaPelinLuontiVirheelliselläSyötteellä(int syöte) {
+    void testaaPelinLuontiVirheellisellaSyotteella(int syote) {
         IPelaaja mockPelaaja1 = Mockito.mock(IPelaaja.class);
         IPelaaja mockPelaaja2 = Mockito.mock(IPelaaja.class);
-        IPisteyttäjä mockPisteyttäjä = Mockito.mock(IPisteyttäjä.class);
-        assertThrows(IllegalArgumentException.class, () -> new Peli(mockPelaaja1, mockPelaaja2, mockPisteyttäjä, syöte));
-        assertThrows(IllegalArgumentException.class, () -> new Peli(mockPelaaja1, mockPelaaja2, mockPisteyttäjä, syöte));
+        IPisteyttaja mockPisteyttaja = Mockito.mock(IPisteyttaja.class);
+        assertThrows(IllegalArgumentException.class, () -> new Peli(mockPelaaja1, mockPelaaja2, mockPisteyttaja, syote));
+        assertThrows(IllegalArgumentException.class, () -> new Peli(mockPelaaja1, mockPelaaja2, mockPisteyttaja, syote));
     }
 
     @ParameterizedTest(name = "Testataan pelaajien voitot")
     @CsvSource({"3, 0 , 3", "0, 3, 3", "3, 2, 3", "2, 3, 3"})
-    void testaaPeliPäätyyKunVoittojaTarpeeksi(int voitotPelaaja1, int voitotPelaaja2, int voitotTarpeeksi) {
+    void testaaPeliPaattyyKunVoittojaTarpeeksi(int voitotPelaaja1, int voitotPelaaja2, int voitotTarpeeksi) {
         IPelaaja mockPelaaja1 = Mockito.mock(IPelaaja.class);
         IPelaaja mockPelaaja2 = Mockito.mock(IPelaaja.class);
-        IPisteyttäjä mockPisteyttäjä = Mockito.mock(IPisteyttäjä.class);
+        IPisteyttaja mockPisteyttaja = Mockito.mock(IPisteyttaja.class);
         when(mockPelaaja1.getVoitot()).thenReturn(voitotPelaaja1);
         when(mockPelaaja2.getVoitot()).thenReturn(voitotPelaaja2);
-        IPeli peli = new Peli(mockPelaaja1, mockPelaaja2, mockPisteyttäjä, voitotTarpeeksi);
+        IPeli peli = new Peli(mockPelaaja1, mockPelaaja2, mockPisteyttaja, voitotTarpeeksi);
         peli.pelaa();
         assertTrue(mockPelaaja1.getVoitot() == voitotTarpeeksi || mockPelaaja2.getVoitot() == voitotTarpeeksi);
     }
